@@ -68,6 +68,7 @@ class Car {
     this.gas = 30;
     this.isStarted = false;
     this.isMoving = false;
+    petrolIntervalId = null;
   }
 
   refill() {
@@ -78,17 +79,20 @@ class Car {
     if (!this.isStarted) return console.log("Oldin Zavat qilish kere");
     if (this.isMoving) return console.log("Yaxshi ketvommizku ozi");
 
-    this.isMoving = true;
+    this = true;
     console.log(`${this.name} Xarakatlanvotti`);
-    setInterval(() => {
+    this.petrolIntervalId = setInterval(() => {
       if (this.gas > 0 && this.isMoving) {
-        this.gas -= 3;
+        this.gas --;
         console.log(`${this.gas}ta gaz qoldi`);
       }
       if (this.gas === 0 && this.isMoving) {
         console.log("Gaz qomadi. Moshina ochdi");
+        clearInterval(this.petrolIntervalId);
+        this.petrolIntervalId = null;
       }
     }, 1000);
+
   }
 
   startEngine() {
@@ -97,15 +101,18 @@ class Car {
 
     this.isStarted = true;
     console.log(`${this.name} Zavat boldi`);
-    setInterval(() => {
+    this.petrolIntervalId = setInterval(() => {
       if (this.gas > 0 && this.isStarted) {
-        this.gas -= 1;
+        this.gas --;
         console.log(`${this.gas}ta gaz qoldi`);
       }
       if (this.gas === 0 && this.isStarted) {
         console.log("Gaz qomadi. Moshina ochdi");
       }
-    }, 1000);
+      clearInterval(this.petrolIntervalId);
+      this.petrolIntervalId = null;
+    }, 5000);
+    
   }
 
   stopMoving() {
