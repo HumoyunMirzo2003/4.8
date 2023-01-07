@@ -79,7 +79,7 @@ class Car {
     if (!this.isStarted) return console.log("Oldin Zavat qilish kere");
     if (this.isMoving) return console.log("Yaxshi ketvommizku ozi");
 
-    this = true;
+    
     console.log(`${this.name} Xarakatlanvotti`);
     this.petrolIntervalId = setInterval(() => {
       if (this.gas > 0 && this.isMoving) {
